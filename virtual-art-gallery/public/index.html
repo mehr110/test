@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="loading.css">
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+        <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+        <script src="https://dist.3d.io/3dio-js/1.1.x/3dio.min.js"></script>
+        <script src="https://rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script>
+        <script src="lib/cursor.js"></script>
+
+        <meta charset="utf-8">
+    </head>
+    <body>     
+<a-scene id="scene" vr-mode-ui="enabled: true">
+    <a-assets>
+        <img id="picture-source" src="assets/placeholder.png">
+    </a-assets>
+    <a-entity id="target" position="0 0.2 0"></a-entity>
+    <a-entity id="cam" camera="fov: 50; zoom: 1;" position="0 5 5" orbit-controls="
+        invertZoom: true;
+        autoRotate: false;
+        target: #target;
+        enableDamping: true;
+        dampingFactor: 0.2;
+        minDistance:4;
+        maxDistance:100;
+        enableKeys: true;
+        autoVRLookCam: false;
+        maxPolarAngle: 1.57">
+        
+        <a-entity id="cursor"
+            move-cursor="rayOrigin: mouse; fuse: false; moveIntersections: drag"
+            raycaster="objects: .clickable">
+        </a-entity>
+    </a-entity>
+
+    <a-image id="picture" src="#picture-source" position="1 1.5 -1.1" width="0.5" height="0.5" visible="false"></a-image>
+    <a-plane id="placement-box"
+        position="2 1.5 -1.1"
+        width="1"
+        height="1"
+        color="#68C5E4"
+        opacity="0.5"
+        visible="false"
+    ></a-plane>
+</a-scene>
+<div class="overlay">
+    <div class="icon-set frame-controls">
+        <img class="icon" id="picture-search" src="assets/icon-search.png">
+        <img class="icon" id="picture-random" src="assets/icon-random.png">
+    </div>
+    <div class="icon-set modes">
+        <img class="icon" id="mode-camera" src="assets/icon-camera.png">
+        <img class="icon" id="mode-place" src="assets/icon-place.png">
+    </div>
+    <div class="icon-set about">
+        <img class="icon" id="button-scene-switch-show" src="assets/icon-switch.png">
+        <img class="icon" id="button-help" src="assets/icon-info.png">
+    </div>
+    <div class="search-container" id="search-ui">
+        <div class="search-header">
+            <input id="query" type="text" placeholder="Search artworks" class="search-box">
+            <button id="send-query" class="button-primary search-button">Search</button>
+            <img class="search-close" src="assets/icon-close-help.png" id="search-close">
+        </div>
+        <div class="search-body" id="search-body">
+            <div class="search-filters">
+                <p class="disclaimer">The following images are all part of the "Rijksmuseum Collection".</p>
+                <p id="total-results">Loading...</p>
+                <h4>Filter</h4>
+                <h6>Type</h6>
+                <select id="filter-type">
+                    <option value="__any__">Any</option>
+                </select>
+                <h6>Artist</h6>
+                <select id="filter-artist">
+                    <option value="__any__">Any</option>
+                </select>
+                <h6>Period</h6>
+                <select id="filter-period">
+                    <option value="__any__">Any</option>
+                </select>
+                <h6>Origin</h6>
+                <select id="filter-origin">
+                    <option value="__any__">Any</option>
+                </select>
+                <h6>Medium</h6>
+                <select id="filter-medium">
+                    <option value="__any__">Any</option>
+                </select>
+                <h6>Technique</h6>
+                <select id="filter-technique">
+                    <option value="__any__">Any</option>
+                </select>
+                <button id="filter-reset" class="button-primary">Reset filters</button>
+            </div>
+            <div id="results" class="search-results">
+            </div>
+        </div>
+    </div>
+    <div id="scene-select-container" class="scene-switch">
+        <div class="search-header">
+            <input id="scene-id" type="text" placeholder="Enter scene URL" class="search-box">
+            <button id="sene-switch" class="button-primary search-button">Switch scene</button>
+            <img class="search-close" src="assets/icon-close-help.png" id="scene-switch-close">
+        </div>
+    </div>
+    <div class="help-overlay" id="help">
+        <div class="help-content">
+            <img class="help-close" src="assets/icon-close-help.png" id="help-close">
+            <h1>Virtual Art Gallery</h1>
+            <p>
+                Welcome to the Virtual Art Gallery, developed using the Rijksmuseum API. The experience allows you to put an interactive picture frame inside Archilogic models from over 300,000 artworks from the collection of the Rijksmuseum in Amsterdam, The Netherlands.
+            </p>
+            <p>
+                Here is more information about how to navigate the experience:
+            </p>
+            <div class="image-bullet">
+                <img src="assets/icon-camera.png">
+                <p>
+                    Camera Mode gives you control over the camera. Hold left mouse click (for desktop) or tap and hold (for touchscreen) to rotate the view around. Mouse scroll or pinch with two fingers to zoom in and out. Right mouse click or three finger drag to move the camera up, down, left and right
+                </p>
+            </div>
+            <div class="image-bullet">
+                <img src="assets/icon-place.png">
+                <p>
+                    Picture Frame mode allows you to place an interactive picture frame on any wall. Simply hold left mouse click (for desktop) or tap and hold (for touchscreen) on any wall and define the frame size.
+                </p>
+            </div>
+            <div class="image-bullet">
+                <img src="assets/icon-search.png">
+                <p>
+                    Search through the whole artwork collection. You can refine your search with type, period, origin, etc.
+                </p>
+            </div>
+            <div class="image-bullet">
+                <img src="assets/icon-random.png">
+                <p>
+                    Random Artwork picks random paintings from the artworks collection.
+                </p>
+            </div>
+            <div class="image-bullet">
+                <img src="assets/icon-switch.png">
+                <p>
+                    Switch Scene allows you to load your own Archilogic model by entering the model URL.
+                </p>
+            </div>
+            <div class="image-bullet">
+                <img src="assets/icon-info.png">
+                <p>
+                    Brings back these instructions.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="build/main.bundle.js"></script>
+</body>
+</html>

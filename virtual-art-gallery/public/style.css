@@ -1,0 +1,267 @@
+#scene {
+    display: inline !important;
+    position: absolute !important;
+}
+
+.icon-set {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-right: 8px;
+    pointer-events: none;
+}
+
+.frame-controls {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.modes {  
+    align-items: flex-end;
+    justify-content: flex-start;
+    
+}
+
+.about {
+    align-items: flex-start;
+    justify-content: flex-end;
+    right: 8px;
+}
+
+.icon {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    margin: 8px;
+    margin-right: 0px;
+    user-select: none;
+    pointer-events: auto;
+}
+
+.search-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.search-header {
+    flex: 0 1 auto;
+    background-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 30px;
+}
+
+.search-header > .search-box {
+    float: left;
+    width: 100%;
+    max-width: 400px;
+    margin: 0px;
+}
+
+.search-header > .search-button {
+    float:left;
+    margin: 0px;
+    margin-left: 20px;
+}
+
+.search-header > .search-close {
+    float: right;
+    right: 50;
+    margin: 0px;
+}
+
+.search-body {
+    flex: 1 1 auto;
+    overflow: scroll;
+    display: flex;
+}
+
+.search-filters {
+    flex: 0 1 300px;
+    padding: 30px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .search-header {
+        padding-left: 60px;
+    }
+
+    .search-filters {
+        padding-left: 60px;
+    }
+}
+
+.search-results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    justify-content: space-around;
+    flex: 1 1 auto;
+    width: 100%;
+}
+.search-results > .spacer {
+    flex: 1 1 auto;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result-tile {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    margin-right: 30px;
+}
+.result-thumb-holder {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    cursor: pointer;
+}
+
+.result-thumb {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.result-title {
+    display: block;
+    margin-top: 8px;
+    line-height: 3.6rem;
+    max-height: 7.2rem;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.result-subtitle {
+
+    color: #808080;
+}
+
+.disclaimer {
+    line-height: 1.6rem;
+    margin-bottom: 15px !important;
+}
+
+.search-filters > p {
+    margin-bottom: 0.1rem;
+}
+
+.search-filters > h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.search-filters > h6 {
+    margin-bottom: 0.1rem;
+    margin-top: 10px;
+}
+
+.search-filters > select {
+    width: 100%;
+}
+
+.search-filters > button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.help-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.help-content {
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    color: white;
+}
+.help-content > h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.help-content > p {
+    margin-bottom: 1.5rem;
+}
+
+.help-close {
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 16px;
+    right: 16px;   
+}
+
+.search-close {
+    width: 44px;
+    height: 44px;
+    float: right;  
+}
+
+.image-bullet {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.image-bullet > img {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+}
+
+.image-bullet > p {
+    flex: 1 1 auto;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.scene-switch {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+.a-enter-vr-button {
+    width: 50px !important;
+    height: 30px !important;
+    margin: 8px !important;
+    padding: 0px !important;
+    bottom: -20px !important;
+    right: -20px !important;
+}
